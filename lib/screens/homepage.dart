@@ -1,3 +1,6 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:ecom2/screens/selectLang.dart';
 import 'package:ecom2/widgets/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +13,6 @@ class Homepage extends StatefulWidget {
 
 class _OnboardingScreenState extends State<Homepage> {
   final PageController _controller = PageController();
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,13 @@ class _OnboardingScreenState extends State<Homepage> {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Selectlang(),
+                  ));
+            },
             child: Text(
               'Skip',
               style: TextStyle(
@@ -39,9 +47,7 @@ class _OnboardingScreenState extends State<Homepage> {
             child: PageView(
               controller: _controller,
               onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
+                setState(() {});
               },
               children: [
                 buildPage(

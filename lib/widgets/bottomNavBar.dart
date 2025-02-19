@@ -1,3 +1,4 @@
+import 'package:ecom2/screens/selectLang.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -10,9 +11,7 @@ class Bottomnavbar extends StatefulWidget {
 }
 
 class _BottomnavbarState extends State<Bottomnavbar> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
-
+  final _count = 5;
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -22,7 +21,7 @@ class _BottomnavbarState extends State<Bottomnavbar> {
           children: [
             SmoothPageIndicator(
               controller: widget.controller,
-              count: 5,
+              count: _count,
               effect: ExpandingDotsEffect(
                 activeDotColor: Colors.purple,
                 dotColor: Colors.grey.shade400,
@@ -33,8 +32,16 @@ class _BottomnavbarState extends State<Bottomnavbar> {
             ),
             FloatingActionButton(
               onPressed: () {
-                widget.controller.nextPage(
-                    duration: Durations.medium2, curve: Curves.easeInOut);
+                if (_count == 5) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Selectlang(),
+                      ));
+                } else {
+                  widget.controller.nextPage(
+                      duration: Durations.medium2, curve: Curves.easeInOut);
+                }
               },
               backgroundColor: Colors.purple,
               child: Icon(Icons.arrow_forward_ios),
