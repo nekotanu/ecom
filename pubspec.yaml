@@ -1,0 +1,54 @@
+name: ecom2
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  smooth_page_indicator: ^1.2.0+3
+  country_picker_pro: ^0.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/
+    - assets/images/1.jpg
+    - assets/images/2.jpg
+    - assets/images/3.jpg
+    - assets/images/4.jpg
+    - assets/images/5.jpg
+
+  fonts:
+    - family: GrandisExtended
+      fonts:
+        - asset: assets/fonts/GrandisExtended-Black.ttf
+          weight: 900
+        - asset: assets/fonts/GrandisExtended-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/GrandisExtended-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/GrandisExtended-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/GrandisExtended-Thin.ttf
+          weight: 100
+
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-VariableFont.ttf
+        - asset: assets/fonts/PlusJakartaSans-Italic-VariableFont.ttf
+          style: italic
