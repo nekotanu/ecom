@@ -1,7 +1,8 @@
-// ignore: file_names
 import 'package:country_picker_pro/country_picker_pro.dart';
 import 'package:ecom2/screens/homepage.dart';
+import 'package:ecom2/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Selectlang extends StatefulWidget {
   const Selectlang({super.key});
@@ -13,6 +14,8 @@ class Selectlang extends StatefulWidget {
 class _SelectlangState extends State<Selectlang> {
   CountryProvider countryProvider = CountryProvider();
   List<Country>? countries;
+  Country? selectedCountry;
+
   @override
   void initState() {
     super.initState();
@@ -24,19 +27,29 @@ class _SelectlangState extends State<Selectlang> {
     setState(() {});
   }
 
+  Future<void> saveCity() async {
+    if (selectedCountry == null) return;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedcity', selectedCountry!.displayName);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Mainscreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Homepage(),
-                  ));
-            },
-            icon: Icon(Icons.arrow_back_ios)),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Homepage()),
+            );
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,30 +59,49 @@ class _SelectlangState extends State<Selectlang> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Select your preffered language',
+                  'Select your preferred language',
                   style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black,
-                      fontFamily: 'GrandisExtended',
-                      fontWeight: FontWeight.bold),
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontFamily: 'GrandisExtended',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              Text('It will be used throughout the app'),
-              if (countries == null)
-                const Center(child: CircularProgressIndicator())
-              else
-                DropdownButton<Country>(
-                  items: countries!.map((country) {
-                    return DropdownMenuItem(
-                      value: country,
-                      child: Text(country.displayName),
-                    );
-                  }).toList(),
-                  onChanged: (selectedCountry) {
-                    debugPrint(
-                        'Selected Country: ${selectedCountry?.displayName}');
-                  },
-                )
+              Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  children: [
+                    Text(
+                      'It will be used throughout the app',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                        fontFamily: 'GrandisExtended',
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    if (countries == null)
+                      const Center(child: CircularProgressIndicator())
+                    else
+                      DropdownButton<Country>(
+                        value: selectedCountry,
+                        items: countries!.map((country) {
+                          return DropdownMenuItem(
+                            value: country,
+                            child: Text(country.displayName),
+                          );
+                        }).toList(),
+                        onChanged: (Country? newCountry) {
+                          setState(() {
+                            selectedCountry = newCountry;
+                          });
+                          if (newCountry != null) saveCity();
+                        },
+                      ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

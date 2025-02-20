@@ -43,8 +43,12 @@ class _BottomnavbarState extends State<Bottomnavbar> {
                       duration: Durations.medium2, curve: Curves.easeInOut);
                 }
               },
+              shape: CircleBorder(side: BorderSide.none, eccentricity: 0.9),
               backgroundColor: Colors.purple,
-              child: Icon(Icons.arrow_forward_ios),
+              child: Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.white,
+              ),
             )
           ],
         ));
