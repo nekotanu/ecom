@@ -10,6 +10,9 @@ class Mainscreen extends StatefulWidget {
 class _MainscreenState extends State<Mainscreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Text('This is the main screen'),
+    );
   }
 }

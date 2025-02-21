@@ -23,7 +23,7 @@ class _SelectlangState extends State<Selectlang> {
   }
 
   void loadcountry() async {
-    countries = await countryProvider.getAll();
+    countries = countryProvider.getAll();
     setState(() {});
   }
 
@@ -32,6 +32,7 @@ class _SelectlangState extends State<Selectlang> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedcity', selectedCountry!.displayName);
     Navigator.pushReplacement(
+      // ignore: use_build_context_synchronously
       context,
       MaterialPageRoute(builder: (context) => Mainscreen()),
     );

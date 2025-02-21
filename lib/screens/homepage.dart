@@ -1,8 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:ecom2/screens/selectLang.dart';
-import 'package:ecom2/widgets/bottomNavBar.dart';
+import 'package:ecom2/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:ecom2/screens/notification.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -26,7 +26,7 @@ class _OnboardingScreenState extends State<Homepage> {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Selectlang(),
+                    builder: (context) => NotificationScreen(),
                   ));
             },
             child: Text(
