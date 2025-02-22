@@ -1,4 +1,3 @@
-import 'package:ecom2/screens/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:ecom2/screens/homepage.dart';
 

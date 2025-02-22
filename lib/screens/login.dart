@@ -1,4 +1,5 @@
 import 'package:ecom2/screens/forgot_password.dart';
+import 'package:ecom2/screens/signup.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -143,6 +144,24 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
+          Center(
+            child: Row(
+              children: [
+                Text(
+                  'Dont have an account?',
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Signup(),
+                          ));
+                    },
+                    child: Text('Sign up'))
+              ],
+            ),
+          )
         ],
       ),
     );
