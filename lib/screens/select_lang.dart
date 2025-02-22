@@ -1,6 +1,7 @@
 import 'package:country_picker_pro/country_picker_pro.dart';
 import 'package:ecom2/screens/homepage.dart';
-import 'package:ecom2/screens/mainscreen.dart';
+import 'package:ecom2/screens/login.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,7 +35,7 @@ class _SelectlangState extends State<Selectlang> {
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context,
-      MaterialPageRoute(builder: (context) => Mainscreen()),
+      MaterialPageRoute(builder: (context) => Login()),
     );
   }
 

@@ -91,8 +91,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
           ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.purpleAccent),
-                shape: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(Colors.purpleAccent),
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
