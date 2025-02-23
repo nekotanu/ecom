@@ -1,18 +1,53 @@
+import 'package:ecom2/screens/shop.dart';
+import 'package:ecom2/screens/discover.dart';
+import 'package:ecom2/screens/fav.dart';
+import 'package:ecom2/screens/cart.dart';
+import 'package:ecom2/screens/profile.dart';
+import 'package:ecom2/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 
-class Mainscreen extends StatefulWidget {
-  const Mainscreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<Mainscreen> createState() => _MainscreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainscreenState extends State<Mainscreen> {
+class _MainScreenState extends State<MainScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> pages = [Shop(), Discover(), Fav(), Cart(), Profile()];
+
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Text('This is the main screen'),
+      appBar: AppBar(
+        title: const Text(
+          'Name',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'GrandisExtended',
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        centerTitle: false,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
+        ],
+      ),
+      body: pages[_selectedIndex],
+      bottomNavigationBar: NavBar(
+        selectedIndex: _selectedIndex,
+        onTabChange: _onTabChange,
+      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:ecom2/screens/mainscreen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:ecom2/screens/homepage.dart';
 
@@ -11,9 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Ecom App UI',
-      home: Homepage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Ecom App UI',
+        home: MainScreen());
   }
 }
