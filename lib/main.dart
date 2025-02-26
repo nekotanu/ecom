@@ -15,6 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Ecom App UI',
-        home: MainScreen());
+        home: Homepage());
   }
 }

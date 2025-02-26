@@ -1,4 +1,5 @@
 import 'package:ecom2/screens/forgot_password.dart';
+import 'package:ecom2/screens/mainscreen.dart';
 import 'package:ecom2/screens/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -130,7 +131,7 @@ class _LoginState extends State<Login> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ForgotPassword(),
+                        builder: (context) => MainScreen(),
                       ));
                 },
                 child: Text(

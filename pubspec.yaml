@@ -36,6 +36,8 @@ flutter:
     - assets/images/5.jpg
     - assets/images/noti.jpg
     - assets/images/clothes.jpg
+    - assets/images/yellow.jpg
+    - assets/images/shoes.jpg
   fonts:
     - family: GrandisExtended
       fonts:
