@@ -1,6 +1,7 @@
 import 'package:ecom2/screens/login.dart';
 import 'package:ecom2/screens/terms.dart';
 import 'package:flutter/material.dart';
+import 'package:ecom2/theme.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -12,7 +13,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  bool ischanged = false; // Removed nullability
+  bool ischanged = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,33 +26,32 @@ class _SignupState extends State<Signup> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-          // Used ListView instead of Column
           children: [
             Image.asset('assets/images/clothes.jpg'),
             Align(
               alignment: Alignment.topLeft,
-              child: Text('Let’s get started!'),
+              child: Text(
+                'Let’s get started!',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
             ),
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                  'Please enter your valid data in order to create an account'),
+                'Please enter your valid data in order to create an account',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                cursorColor: Colors.black,
+                cursorColor: Theme.of(context).colorScheme.primary,
                 controller: email,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Enter email',
-                  prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
+                  prefixIcon: Icon(Icons.email,
+                      color: Theme.of(context).colorScheme.primary),
                 ),
               ),
             ),
@@ -63,13 +63,8 @@ class _SignupState extends State<Signup> {
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
                   hintText: 'Enter password',
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
+                  prefixIcon: Icon(Icons.lock,
+                      color: Theme.of(context).colorScheme.primary),
                 ),
               ),
             ),
@@ -77,6 +72,7 @@ class _SignupState extends State<Signup> {
               children: [
                 Checkbox(
                   value: ischanged,
+                  activeColor: Theme.of(context).colorScheme.primary,
                   onChanged: (bool? newval) {
                     if (newval != null) {
                       setState(() {
@@ -85,42 +81,41 @@ class _SignupState extends State<Signup> {
                     }
                   },
                 ),
-                Text("Accept "),
+                Text("Accept ", style: Theme.of(context).textTheme.bodyMedium),
                 TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Terms(),
-                          ));
-                    },
-                    child: Text(
-                      'Terms and conditions',
-                      style: TextStyle(color: Colors.purpleAccent),
-                    ))
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Terms()),
+                    );
+                  },
+                  child: Text(
+                    'Terms and conditions',
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                  ),
+                ),
               ],
             ),
             ElevatedButton(
               onPressed: ischanged ? () {} : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purpleAccent,
-              ),
               child: Text("Continue"),
             ),
             Row(
               children: [
-                Text('Have an acoount?'),
+                Text('Have an account?',
+                    style: Theme.of(context).textTheme.bodyMedium),
                 TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Login(),
-                          ));
-                    },
-                    child: Text('Login'))
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    );
+                  },
+                  child: Text('Login'),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

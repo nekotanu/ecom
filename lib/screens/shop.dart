@@ -15,13 +15,15 @@ class _ShopState extends State<Shop> {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _buildCard(deviceWidth, 'assets/images/clothes.jpg', 'Sale'),
-                  _buildCard(deviceWidth, 'assets/images/2.jpg', 'New'),
+                  _buildCard(context, deviceWidth, 'assets/images/clothes.jpg',
+                      'Sale'),
+                  _buildCard(
+                      context, deviceWidth, 'assets/images/2.jpg', 'New'),
                 ],
               ),
             ),
@@ -31,21 +33,22 @@ class _ShopState extends State<Shop> {
     );
   }
 
-  Widget _buildCard(double width, String imagePath, String label) {
+  Widget _buildCard(
+      BuildContext context, double width, String imagePath, String label) {
     return SizedBox(
-      width: width,
+      width: width * 0.8, // Adjust width for better responsiveness
       height: 200,
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: Theme.of(context).cardTheme.shape ??
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: Theme.of(context).cardTheme.elevation ?? 4.0,
         child: Stack(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
                 imagePath,
-                width: width,
+                width: width * 0.8,
                 height: 200,
                 fit: BoxFit.cover,
               ),
@@ -54,18 +57,18 @@ class _ShopState extends State<Shop> {
               top: 10,
               left: 10,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.black.withOpacity(0.5),
                 ),
                 child: Text(
                   label,
-                  style: TextStyle(
-                    fontFamily: 'GrandisExtended',
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'GrandisExtended',
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
             ),

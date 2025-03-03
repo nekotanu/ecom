@@ -10,6 +10,7 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   bool light = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,99 +21,91 @@ class _NotificationScreenState extends State<NotificationScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Selectlang(),
-                  ));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Selectlang()),
+              );
             },
             child: Text(
               'Skip',
-              style: TextStyle(
-                fontFamily: 'GrandisExtended',
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
           )
         ],
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset("assets/images/noti.jpg"),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Get notified about latest updates and stay updated!',
-                style: TextStyle(
-                  fontFamily: 'GrandisExtended',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            child: Text(
+              'Get notified about the latest updates and stay updated!',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Happy shopping :)',
-                style: TextStyle(
-                    fontFamily: 'GrandisExtended',
+            child: Text(
+              'Happy shopping :)',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.grey,
                     fontWeight: FontWeight.w400,
-                    textBaseline: TextBaseline.alphabetic),
-              ),
+                  ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Notifications'),
-                  Switch(
-                      value: light,
-                      activeColor: Colors.purpleAccent,
-                      onChanged: (bool value) {
-                        setState(() {
-                          light = value;
-                        });
-                      })
-                ],
-              ),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Notifications',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Switch(
+                  value: light,
+                  activeColor: Colors.purpleAccent,
+                  onChanged: (bool value) {
+                    setState(() {
+                      light = value;
+                    });
+                  },
+                ),
+              ],
             ),
           ),
-          ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.purpleAccent),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
+          const Spacer(),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.purpleAccent,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
                 ),
               ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Selectlang(),
-                    ));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Selectlang()),
+                );
               },
               child: Text(
                 'Next',
-                style: TextStyle(
-                  fontFamily: 'GrandisExtended',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                ),
-              ))
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+              ),
+            ),
+          ),
         ],
       ),
     );

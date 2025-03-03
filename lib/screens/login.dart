@@ -13,111 +13,61 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Image.asset('assets/images/clothes.jpg'),
-          SizedBox(
-            height: 8,
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'Welcome Back!',
-                style: TextStyle(
-                  fontSize: 19,
-                  fontFamily: 'GrandisExtended',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset('assets/images/clothes.jpg'),
+            const SizedBox(height: 8),
+            Text(
+              'Welcome Back!',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'Login your data which you put during registration',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: 'GrandisExtended',
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+            const SizedBox(height: 5),
+            Text(
+              'Login with the details you used during registration',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.grey,
+                  ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextField(
+            const SizedBox(height: 10),
+            TextField(
               controller: _email,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: 'Enter your email',
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-              ),
+              decoration: _inputDecoration(Icons.email, 'Enter your email'),
             ),
-          ),
-          SizedBox(
-            height: 7,
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextField(
+            const SizedBox(height: 10),
+            TextField(
               controller: _password,
               obscureText: true,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                hintText: 'Enter password',
-                prefixIcon: Icon(Icons.lock),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.grey[200],
-              ),
+              decoration: _inputDecoration(Icons.lock, 'Enter password'),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          TextButton(
-              onPressed: () {
-                Navigator.push(
+            const SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ForgotPassword(),
-                    ));
-              },
-              child: Text(
-                'Forgot Password ?',
-                style: TextStyle(
-                  fontFamily: 'GrandisExtended',
-                  color: Colors.purpleAccent,
-                  fontWeight: FontWeight.w400,
+                        builder: (context) => const ForgotPassword()),
+                  );
+                },
+                child: const Text(
+                  'Forgot Password?',
+                  style: TextStyle(color: Colors.purpleAccent),
                 ),
-              )),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: SizedBox(
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
               width: double.infinity,
               height: 45,
               child: ElevatedButton(
@@ -129,42 +79,45 @@ class _LoginState extends State<Login> {
                 ),
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MainScreen(),
-                      ));
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
+                  );
                 },
-                child: Text(
-                  "Login",
-                  style: TextStyle(
-                    fontFamily: 'GrandisExtended',
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                child:
+                    const Text("Login", style: TextStyle(color: Colors.white)),
               ),
             ),
-          ),
-          Center(
-            child: Row(
-              children: [
-                Text(
-                  'Dont have an account?',
-                ),
-                TextButton(
+            const SizedBox(height: 10),
+            Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Don’t have an account?'),
+                  TextButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Signup(),
-                          ));
+                        context,
+                        MaterialPageRoute(builder: (context) => const Signup()),
+                      );
                     },
-                    child: Text('Sign up'))
-              ],
+                    child: const Text('Sign up'),
+                  ),
+                ],
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
+    );
+  }
+
+  InputDecoration _inputDecoration(IconData icon, String hint) {
+    return InputDecoration(
+      hintText: hint,
+      prefixIcon: Icon(icon),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      filled: true,
+      fillColor: Colors.grey[200],
     );
   }
 }

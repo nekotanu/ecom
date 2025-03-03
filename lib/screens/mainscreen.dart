@@ -15,29 +15,33 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-
-  final List<Widget> pages = [Shop(), Discover(), Fav(), Cart(), Profile()];
+  final List<Widget> pages = const [
+    Shop(),
+    Discover(),
+    Fav(),
+    Cart(),
+    Profile()
+  ];
 
   void _onTabChange(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (_selectedIndex != index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Name',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'GrandisExtended',
-            color: Colors.black,
-            fontWeight: FontWeight.w400,
-          ),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+              ),
         ),
-        centerTitle: false,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
