@@ -1,7 +1,6 @@
 import 'package:ecom2/screens/login.dart';
 import 'package:ecom2/screens/terms.dart';
 import 'package:flutter/material.dart';
-import 'package:ecom2/theme.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});

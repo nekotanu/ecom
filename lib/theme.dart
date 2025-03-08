@@ -8,7 +8,7 @@ class AppTheme {
     colorScheme: ColorScheme.light(
       primary: Colors.purpleAccent,
       secondary: Colors.purple,
-      background: Colors.white,
+      surface: Colors.white,
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(

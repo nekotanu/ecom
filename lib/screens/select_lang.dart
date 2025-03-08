@@ -74,7 +74,8 @@ class _SelectlangState extends State<Selectlang> {
                       fontFamily: 'GrandisExtended',
                       color: Theme.of(context)
                           .colorScheme
-                          .onBackground
+                          .onSurface
+                          // ignore: deprecated_member_use
                           .withOpacity(0.6),
                     ),
               ),
@@ -89,7 +90,8 @@ class _SelectlangState extends State<Selectlang> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     filled: true,
-                    fillColor: Theme.of(context).colorScheme.surfaceVariant,
+                    fillColor:
+                        Theme.of(context).colorScheme.surfaceContainerHighest,
                   ),
                   items: countries!.map((country) {
                     return DropdownMenuItem(

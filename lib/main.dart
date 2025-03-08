@@ -1,4 +1,3 @@
-import 'package:ecom2/screens/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecom2/screens/homepage.dart';
 
